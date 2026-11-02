@@ -76,7 +76,7 @@ struct ColoringView: View {
                 
                 // Present tool picker
                 if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                   let window = windowScene.windows.first {
+                   windowScene.windows.first != nil {
                     toolPicker.setVisible(true, forFirstResponder: canvasView)
                     toolPicker.addObserver(canvasView)
                     canvasView.becomeFirstResponder()
@@ -120,7 +120,7 @@ struct ColoringView: View {
         
         let drawingImage = canvasView.drawing.image(
             from: canvasView.bounds,
-            scale: UIScreen.main.scale
+            scale: canvasView.traitCollection.displayScale
         )
         
         let size = outline.size
